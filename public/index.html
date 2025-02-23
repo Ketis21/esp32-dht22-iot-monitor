@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temperature and Humidity Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <h1>Temperature and Humidity Dashboard</h1>
+
+  <label for="date">Select Date:</label>
+  <input type="date" id="date" onchange="fetchDataByDate()">
+
+  <canvas id="myChart"></canvas>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const today = new Date().toISOString().split("T")[0];
+    document.getElementById("date").value = today;
+    fetchDataByDate();
+  });
+
+  let myChart = null;
+
+  async function fetchDataByDate() {
+    const date = document.getElementById("date").value;
+    if (!date) return alert("Select Date!");
+
+    const response = await fetch(`/api/data/${date}`);
+    const data = await response.json();
+
+    const labels = data.map(item => new Date(item.timestamp).toLocaleTimeString());
+    const temperatures = data.map(item => item.temperature);
+    const humidities = data.map(item => item.humidity);
+
+    if (myChart) {
+      myChart.destroy();
+    }
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Temperature (°C)',
+            data: temperatures,
+            borderColor: 'red',
+            fill: false
+          },
+          {
+            label: 'Humidity (%)',
+            data: humidities,
+            borderColor: 'blue',
+            fill: false
+          }
+        ]
+      }
+    });
+  }
+</script>
+</body>
+</html>
