@@ -33,8 +33,8 @@ This project demonstrates how to build a simple IoT system for monitoring temper
 
 ```mermaid
 flowchart LR
-ESP32 -- HTTP POST --> Node.js API --> MongoDB
-ESP32 -- Status --> Serial Monitor
+ESP32 --> HTTP POST --> Node.js API --> MongoDB
+ESP32 --> Status --> Serial Monitor
 Web Interface <-- GET API --> Node.js
 ```
 
