@@ -101,14 +101,14 @@ Content-Type: application/json
 
 ### **2. Get Data by Date:**
 ```http
-GET /api/data/2024-06-01
+GET /api/data/2025-01-01
 ```
 
 ---
 
 ## 🌟 **Screenshots**
 
-![Web Dashboard](https://via.placeholder.com/800x400?text=Web+Dashboard+Example)
+![Web Dashboard](https://github.com/user-attachments/assets/8ee8bf99-5689-42b3-8bb3-52354a54313f)
 
 ---
 
