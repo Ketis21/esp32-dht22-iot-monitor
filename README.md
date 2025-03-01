@@ -58,7 +58,7 @@ flowchart LR
 ### **3. Server Setup:**
 1. Clone this repository:
 ```bash
-git clone https://github.com/yourusername/esp32-dht22-iot-monitor.git
+git clone https://github.com/Ketis21/esp32-dht22-iot-monitor.git
 cd esp32-dht22-iot-monitor
 ```
 2. Install dependencies:
