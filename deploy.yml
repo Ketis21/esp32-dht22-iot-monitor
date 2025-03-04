@@ -19,6 +19,6 @@
         state: started
         restart: true
         env:
-          MONGO_URI: "mongodb://localhost:27017/esp32data"
+          MONGO_URI: "mongodb://mongo:27017/esp32data"
         ports:
           - "3000:3000"
