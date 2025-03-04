@@ -1,0 +1,24 @@
+- name: Deploy ESP32 Server
+  hosts: ketisserver
+  become: true
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker
+        state: present
+
+    - name: Pull latest Docker image
+      community.docker.docker_image:
+        name: "{{ docker_username }}/esp32-server:latest"
+        source: pull
+
+    - name: Restart ESP32 server container
+      community.docker.docker_container:
+        name: esp32_server
+        image: "{{ docker_username }}/esp32-server:latest"
+        state: started
+        restart: true
+        env:
+          MONGO_URI: "mongodb://localhost:27017/esp32data"
+        ports:
+          - "3000:3000"
